@@ -25,6 +25,7 @@ module.exports = {
         ProductsBorder: "#eaeaea",
         BasketRed: "#f87171",
         NavyBlue: "#1e3b60",
+        LightRed: "#EF4444",
       },
     },
   },
