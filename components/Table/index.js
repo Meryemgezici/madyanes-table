@@ -15,7 +15,7 @@ export default function Table({ path, tableColumns }) {
       setFilteredData(stockedData); // Filtrelenmiş veriyi güncelle
     };
     fetchData();
-  }, []);
+  }, [path]);
 
   const handleFilterChange = (filters) => {
     let updatedData = [...data];
@@ -39,12 +39,12 @@ export default function Table({ path, tableColumns }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen">
+    <div className="flex flex-col items-center justify-center min-h-screen p-4">
       {/* Veri gelene kadar loading dön.Veri geldiyse tabloyu göster.*/}
       {data.length === 0 && <Loading />}
       {/* Filtreleme */}
       <Filters onFilterChange={handleFilterChange} />
-      <div className="overflow-x-auto ">
+      <div className="overflow-x-auto w-full">
         <table className="min-w-full divide-y divide-LightGray">
           <thead>
             <tr>
@@ -52,7 +52,7 @@ export default function Table({ path, tableColumns }) {
                 <th
                   key={col.key}
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider h-14 bg-DarkBlue"
+                  className="px-2 md:px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider h-14 bg-DarkBlue"
                 >
                   {col.label}
                 </th>
@@ -61,11 +61,11 @@ export default function Table({ path, tableColumns }) {
           </thead>
           <tbody className="bg-white divide-y divide-LightGray">
             {filteredData.map((item) => (
-              <tr key={item.id} className={"h-[4.5rem]"}>
+              <tr key={item.id} className="h-[4.5rem]">
                 {tableColumns.map((col) => (
                   <td
                     key={col.key}
-                    className={`px-6 py-4 whitespace-nowrap ${
+                    className={`px-2 md:px-6 py-4 whitespace-nowrap ${
                       col.key === "date" ? "text-LightBlue" : ""
                     }`}
                   >

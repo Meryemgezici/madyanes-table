@@ -44,7 +44,7 @@ export function Filters({ onFilterChange }) {
         <select
           value={transactionType}
           onChange={handleTransactionTypeChange}
-          className="mr-2 px-4 py-2 bg-white border rounded"
+          className="ml-2 mr-2 px-4 py-2 bg-white border rounded min-[525px]:h-10 h-16"
         >
           <option value="">Tüm İşlem Türleri</option>
           <option value="devir">Devir</option>

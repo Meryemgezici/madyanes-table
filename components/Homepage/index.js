@@ -2,11 +2,12 @@
 import Link from "next/link";
 import Image from "next/image";
 import pathImg from "./../../public/assets/images/medyanes.png";
+
 export default function Homepage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-r from-MidnightBlue via-DarkTeal to-TealishBlue">
-      <div className="flex bg-white shadow-lg rounded-lg overflow-hidden max-w-6xl mx-auto">
-        <div className="w-2/5 relative">
+    <div className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-gradient-to-r from-MidnightBlue via-DarkTeal to-TealishBlue">
+      <div className="flex flex-col md:flex-row bg-white shadow-lg rounded-lg overflow-hidden max-w-6xl mx-auto">
+        <div className="relative w-full h-96 md:w-2/5 md:h-auto">
           <Image
             src={pathImg}
             alt="Medyanes"
@@ -15,7 +16,7 @@ export default function Homepage() {
             className="w-full h-full"
           />
         </div>
-        <div className="w-3/5 p-8">
+        <div className="w-full md:w-3/5 p-8">
           <h1 className="text-3xl font-bold text-DarkGray mb-4">
             Cari Component – Medyanes 360 Hoş Geldiniz
           </h1>
