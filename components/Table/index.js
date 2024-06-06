@@ -39,12 +39,12 @@ export default function Table({ path, tableColumns }) {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+    <div className="flex flex-col  min-h-screen p-4">
       {/* Veri gelene kadar loading dön.Veri geldiyse tabloyu göster.*/}
       {data.length === 0 && <Loading />}
       {/* Filtreleme */}
       <Filters onFilterChange={handleFilterChange} />
-      <div className="overflow-x-auto w-full">
+      <div className="overflow-x-auto w-full mt-4">
         <table className="min-w-full divide-y divide-LightGray">
           <thead>
             <tr>

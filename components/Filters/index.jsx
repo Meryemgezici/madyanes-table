@@ -1,64 +1,58 @@
 "use client";
+import { sortOptions, transactionOptions } from "@/utils/filterValues";
 import { useState } from "react";
+import Dropdown from "../Dropdown";
 
 // Filtreleme
 export function Filters({ onFilterChange }) {
-  const [sortField, setSortField] = useState("");
-  const [sortOrder, setSortOrder] = useState("asc"); // Sıralama düzeni
-  const [transactionType, setTransactionType] = useState("");
+  const [sortOption, setSortOption] = useState(null);
+  const [transactionOption, setTransactionOption] = useState(null);
 
-  // Sıralama değiştiğinde
-  const handleSortChange = (field) => {
-    const newOrder = sortOrder === "asc" ? "desc" : "asc";
-    setSortField(field);
-    setSortOrder(newOrder);
-    onFilterChange({ sortField: field, sortOrder: newOrder, transactionType });
+  const handleSortChange = (option) => {
+    const [field, order] = option.value.split("|");
+    setSortOption(option);
+    onFilterChange({
+      sortField: field,
+      sortOrder: order,
+      transactionType: transactionOption?.value || "",
+    });
   };
-  // İşlem türüne göre filtrelme
-  const handleTransactionTypeChange = (event) => {
-    const type = event.target.value;
-    setTransactionType(type);
-    onFilterChange({ sortField, sortOrder, transactionType: type });
+
+  const handleTransactionTypeChange = (option) => {
+    setTransactionOption(option);
+    onFilterChange({
+      sortField: sortOption?.value.split("|")[0] || "",
+      sortOrder: sortOption?.value.split("|")[1] || "",
+      transactionType: option.value,
+    });
   };
 
   const handleClearFilters = () => {
-    // Yapılan filtreleri sıfırla
-    setSortField("");
-    setSortOrder("");
-    setTransactionType("");
+    setSortOption(null);
+    setTransactionOption(null);
     onFilterChange({ sortField: "", sortOrder: "", transactionType: "" });
   };
 
   return (
-    <div className="flex justify-between mb-4">
-      <div>
-        <button
-          onClick={() => handleSortChange("balance")}
-          className="mr-2 px-4 py-2 bg-TealishBlue text-white rounded"
-        >
-          Bakiye Sırala{" "}
-          {sortField === "balance" && (sortOrder === "asc" ? "↑" : "↓")}
-        </button>
-      </div>
-      <div>
-        <select
-          value={transactionType}
-          onChange={handleTransactionTypeChange}
-          className="ml-2 mr-2 px-4 py-2 bg-white border rounded min-[525px]:h-10 h-16"
-        >
-          <option value="">Tüm İşlem Türleri</option>
-          <option value="devir">Devir</option>
-          <option value="fatura">Fatura</option>
-        </select>
-      </div>
-      <div>
-        <button
-          onClick={handleClearFilters}
-          className="px-4 py-2 bg-LightRed text-white rounded"
-        >
-          Filtreleri Temizle
-        </button>
-      </div>
+    <div className="flex mb-2 mt-4 space-x-4">
+      <Dropdown
+        options={sortOptions}
+        selectedOption={sortOption}
+        onOptionSelect={handleSortChange}
+        placeholder="Bakiye Sırala"
+      />
+      <Dropdown
+        options={transactionOptions}
+        selectedOption={transactionOption}
+        onOptionSelect={handleTransactionTypeChange}
+        placeholder="Tüm İşlem Türleri"
+      />
+      <button
+        onClick={handleClearFilters}
+        className="px-4 py-2 bg-LightRed text-white rounded transition-all duration-500 ease-in-out transform hover:scale-105"
+      >
+        Filtreleri Temizle
+      </button>
     </div>
   );
 }
