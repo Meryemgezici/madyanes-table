@@ -20,7 +20,9 @@ const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
         className="bg-white border rounded px-4 py-2 cursor-pointer flex justify-between items-center transition-all duration-500 ease-in-out transform hover:scale-105 hover:border-TealishBlue"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className="hidden md:block">
+       <span className={
+            placeholder === "Bakiye Sırala" ? "hidden md:block" : ""
+          }>
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         {placeholder === "Bakiye Sırala" && (
@@ -30,13 +32,13 @@ const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
             className="mx-2 text-TealishBlue block md:hidden"
           />
         )}
-        {placeholder === "Tüm İşlem Türleri" && (
+        {/* {placeholder === "Tüm İşlem Türleri" && (
           <FontAwesomeIcon
           size={"xl"}
             icon={faBriefcase}
             className="mx-2 text-TealishBlue block md:hidden"
           />
-        )}
+        )} */}
 
         <span
           className={`transform transition-transform ${
