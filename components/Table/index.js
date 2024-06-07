@@ -39,7 +39,7 @@ export default function Table({ path, tableColumns }) {
   };
 
   return (
-    <div className="flex flex-col  min-h-screen p-4">
+    <div className="flex flex-col min-h-screen p-4">
       {/* Veri gelene kadar loading dön.Veri geldiyse tabloyu göster.*/}
       {data.length === 0 && <Loading />}
       {/* Filtreleme */}
@@ -52,7 +52,7 @@ export default function Table({ path, tableColumns }) {
                 <th
                   key={col.key}
                   scope="col"
-                  className="px-2 md:px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider h-14 bg-DarkBlue"
+                  className="px-2 md:px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider h-14 bg-DarkBlue"
                 >
                   {col.label}
                 </th>
@@ -65,7 +65,7 @@ export default function Table({ path, tableColumns }) {
                 {tableColumns.map((col) => (
                   <td
                     key={col.key}
-                    className={`px-2 md:px-6 py-4 whitespace-nowrap ${
+                    className={`px-2 md:px-6 py-4 whitespace-nowrap text-center ${
                       col.key === "date" ? "text-LightBlue" : ""
                     }`}
                   >

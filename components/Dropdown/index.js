@@ -1,7 +1,6 @@
 "use client";
 import {
   faBriefcase,
-  faGripHorizontal,
   faMoneyCheckDollar,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,12 +17,10 @@ const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
   return (
     <div className="relative inline-block md:w-64">
       <div
-        className="bg-white border rounded px-4 py-2 cursor-pointer flex justify-between items-center transition-all duration-500 ease-in-out transform hover:scale-105"
+        className="bg-white border rounded px-4 py-2 cursor-pointer flex justify-between items-center transition-all duration-500 ease-in-out transform hover:scale-105 hover:border-TealishBlue"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span className={
-            placeholder === "Bakiye Sırala" ? "hidden md:block" : ""
-          }>
+        <span className="hidden md:block">
           {selectedOption ? selectedOption.label : placeholder}
         </span>
         {placeholder === "Bakiye Sırala" && (
@@ -33,18 +30,18 @@ const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
             className="mx-2 text-TealishBlue block md:hidden"
           />
         )}
-        {/* {placeholder === "Tüm İşlem Türleri" && (
+        {placeholder === "Tüm İşlem Türleri" && (
           <FontAwesomeIcon
           size={"xl"}
             icon={faBriefcase}
             className="mx-2 text-TealishBlue block md:hidden"
           />
-        )} */}
+        )}
 
         <span
           className={`transform transition-transform ${
             isOpen ? "rotate-180" : "rotate-0"
-          }`}
+          } text-NavySky`}
         >
           ▼
         </span>
@@ -63,7 +60,7 @@ const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
             <div
               key={option.value}
               onClick={() => handleOptionClick(option)}
-              className="px-4 py-2 hover:bg-gray-100 hover:text-TealishBlue cursor-pointer transition-all duration-500 ease-in-out transform"
+              className="px-4 py-2 border border-transparent hover:bg-gray-100 hover:text-TealishBlue cursor-pointer transition-all duration-500 ease-in-out transform hover:border-TealishBlue hover:rounded"
             >
               {option.label}
             </div>
