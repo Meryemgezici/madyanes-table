@@ -1,4 +1,10 @@
 "use client";
+import {
+  faBriefcase,
+  faGripHorizontal,
+  faMoneyCheckDollar,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useState } from "react";
 
 const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
@@ -10,12 +16,31 @@ const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
   };
 
   return (
-    <div className="relative inline-block w-64">
+    <div className="relative inline-block md:w-64">
       <div
         className="bg-white border rounded px-4 py-2 cursor-pointer flex justify-between items-center transition-all duration-500 ease-in-out transform hover:scale-105"
         onClick={() => setIsOpen(!isOpen)}
       >
-        <span>{selectedOption ? selectedOption.label : placeholder}</span>
+        <span className={
+            placeholder === "Bakiye Sırala" ? "hidden md:block" : ""
+          }>
+          {selectedOption ? selectedOption.label : placeholder}
+        </span>
+        {placeholder === "Bakiye Sırala" && (
+          <FontAwesomeIcon
+            size={"xl"}
+            icon={faMoneyCheckDollar}
+            className="mx-2 text-TealishBlue block md:hidden"
+          />
+        )}
+        {/* {placeholder === "Tüm İşlem Türleri" && (
+          <FontAwesomeIcon
+          size={"xl"}
+            icon={faBriefcase}
+            className="mx-2 text-TealishBlue block md:hidden"
+          />
+        )} */}
+
         <span
           className={`transform transition-transform ${
             isOpen ? "rotate-180" : "rotate-0"
@@ -23,6 +48,14 @@ const Dropdown = ({ options, selectedOption, onOptionSelect, placeholder }) => {
         >
           ▼
         </span>
+        {console.log(
+          "selectedOption",
+          selectedOption,
+          "selectedOption.label",
+          selectedOption?.label,
+          "placeholder",
+          placeholder
+        )}
       </div>
       {isOpen && (
         <div className="absolute left-0 right-0 mt-1 bg-white border rounded shadow-lg z-10">

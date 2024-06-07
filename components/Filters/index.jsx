@@ -2,6 +2,8 @@
 import { sortOptions, transactionOptions } from "@/utils/filterValues";
 import { useState } from "react";
 import Dropdown from "../Dropdown";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash } from "@fortawesome/free-solid-svg-icons";
 
 // Filtreleme
 export function Filters({ onFilterChange }) {
@@ -34,7 +36,7 @@ export function Filters({ onFilterChange }) {
   };
 
   return (
-    <div className="flex mb-2 mt-4 space-x-4">
+    <div className="flex items-center mb-2 mt-4 gap-4">
       <Dropdown
         options={sortOptions}
         selectedOption={sortOption}
@@ -49,10 +51,17 @@ export function Filters({ onFilterChange }) {
       />
       <button
         onClick={handleClearFilters}
-        className="px-4 py-2 bg-LightRed text-white rounded transition-all duration-500 ease-in-out transform hover:scale-105"
+        className="px-4 py-2 bg-LightRed text-white rounded transition-all duration-500 ease-in-out transform hover:scale-105 hidden md:block"
       >
         Filtreleri Temizle
       </button>
+      <div className="flex justify-center items-center w-12 h-10 rounded cursor-pointer bg-LightRed transition-all duration-500 ease-in-out transform hover:scale-105 md:hidden">
+        <FontAwesomeIcon
+          onClick={handleClearFilters}
+          icon={faTrash}
+          className="text-white text-xl "
+        />
+      </div>
     </div>
   );
 }
