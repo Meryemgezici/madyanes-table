@@ -40,7 +40,7 @@ export default function Table({ path, tableColumns }) {
 
   return (
     <div className="flex flex-col min-h-screen p-4">
-      {/* Veri gelene kadar loading dön. Veri geldiyse tabloyu göster. */}
+      {/* Veri gelene kadar loading dön.Veri geldiyse tabloyu göster.*/}
       {data.length === 0 && <Loading />}
       {/* Filtreleme */}
       <Filters onFilterChange={handleFilterChange} />
@@ -52,9 +52,7 @@ export default function Table({ path, tableColumns }) {
                 <th
                   key={col.key}
                   scope="col"
-                  className={`px-2 md:px-6 py-3 text-left text-xs font-medium text-white uppercase tracking-wider h-14 bg-DarkBlue ${
-                    col.responsiveClass
-                  }`}
+                  className="px-2 md:px-6 py-3 text-center text-xs font-medium text-white uppercase tracking-wider h-14 bg-DarkBlue"
                 >
                   {col.label}
                 </th>
@@ -66,12 +64,12 @@ export default function Table({ path, tableColumns }) {
               <tr key={item.id} className="h-[4.5rem]">
                 {tableColumns.map((col) => (
                   <td
-                    key={`${item.id}-${col.key}`}
-                    className={`px-2 md:px-6 py-4 whitespace-nowrap ${
+                    key={col.key}
+                    className={`px-2 md:px-6 py-4 whitespace-nowrap text-center ${
                       col.key === "date" ? "text-LightBlue" : ""
-                    } ${col.responsiveClass}`}
+                    }`}
                   >
-                    {item[col.key] ? item[col.key] : "—"}
+                    {item[col.key]}
                   </td>
                 ))}
               </tr>
